@@ -1,0 +1,4 @@
+FROM openjdk:17
+COPY target/ /tmp
+WORKDIR /tmp
+CMD java -jar Passenger-1.0-SNAPSHOT.jar

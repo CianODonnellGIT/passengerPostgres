@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  db:
+    image: 'postgres:13.1-alpine'
+    container_name: dbase
+    environment:
+      - POSTGRES_USER=compose-postgres
+      - POSTGRES_PASSWORD=compose-postgres
+
+  server:
+    image: dockercod/backend
+    ports:
+      - "8080:8081"
+    environment:
+      - spring.datasource.url=jdbc:postgres://db:5432/atu
+    networks:
+      - db
+    depends_on:
+      - db
+
+networks:
+  db:
